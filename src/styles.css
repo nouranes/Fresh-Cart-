@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+body{
+     
+      
+  background-image: url('/images/light-patten.svg'); 
+  background-repeat: repeat-y; 
+  background-position: center top; 
+  background-size: cover; 
+  background-attachment: fixed; 
+  
+}
+:root {
+  font-family: "Encode Sans Expanded", sans-serif;
+  --main-color: #0aad0a;
+  --secondary-color: rgba(33, 37, 41, .75);
+  --light-color: #f8f9fa;
+ 
+}
+
+.bg-main-light {
+    background-color: var(--light-color);
+
+ 
+}
+.main-color{
+    color: var(--main-color);
+}
+.bg-main-color{
+    background-color:var(--main-color) ;
+    
+}
+.small{
+    font-size: 14px;
+}
+.secondary-color{
+    color: var(--secondary-color);
+}

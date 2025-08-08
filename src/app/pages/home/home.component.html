@@ -1,0 +1,75 @@
+<section class="py-5 pt-10">
+  <div class="parent grid md:grid-cols-[70%_minmax(0,1fr)] container w-10/12 mx-auto">
+    <div>
+      <owl-carousel-o [options]="mainSliderOptions">
+        <ng-template carouselSlide>
+          <img src="/images/slide1.jpg" class="w-full h-[500px] object-cover" alt="">
+        </ng-template>
+        <ng-template carouselSlide>
+          <img src="/images/slide2.jpg" class="w-full h-[500px] object-cover" alt="">
+        </ng-template>
+        <ng-template carouselSlide>
+          <img src="/images/slide3.jpg" class="w-full h-[500px] object-cover" alt="">
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+
+    <div>
+      <img src="/images/fixedImg1.jpg" class="w-full h-[250px] object-cover" alt="">
+      <img src="/images/fixedImg2.jpg" class="w-full h-[250px] object-cover" alt="">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="secTitle mb-3 py-5">
+            <h3 class="text-center text-2xl">Popular  <span class="main-color">Categories</span></h3>
+        </div>
+  <div class="py-5 container mx-auto w-10/12">
+    <owl-carousel-o [options]="customOptions">
+      @for (cat of myCategories; track cat._id) {
+        <ng-template carouselSlide>
+          <img [src]="cat.image" class="w-full h-[300px] object-cover px-1 " alt="">
+          <h3 class="text-center py-2 main-color">{{ cat.name }}</h3>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</section>
+
+
+<section class="py-4">
+    <div class="container w-10/12 mx-auto">
+
+        <div class="secTitle mb-3 py-5">
+            <h3 class="text-center text-2xl">Our <span class="main-color">Products</span></h3>
+        </div>
+
+        <div class="parent grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 bg-white">
+            @for (prod of myProducts.slice(0, 20); track prod._id) {
+            <div class="card border border-green-400/50 rounded-md overflow-hidden shadow relative p-1">
+                <div class="card-img">
+                    <img [src]='prod.imageCover' class="w-full" alt="" />
+                </div>
+                <div class="card-body px-2 py-4">
+                    <h4 class="text-green-500 text-xs">{{prod.category.name}}</h4>
+                    <h3 class="font-medium">{{prod.title.split(" ",2)}}</h3>
+                    <div class="flex justify-between items-center">
+                        <span>{{prod.price}} EGP</span>
+                    </div>
+
+                    <div class="flex items-center">
+                        <i class="fas fa-star text-yellow-300"></i>
+                        <span class="text-gray-500">{{prod.ratingsAverage}}</span>
+                    </div>
+                </div>
+                <button class="py-1 px-2 MB-1 text-white rounded-lg w-[95%] block mx-auto bg-main-color cursor-pointer">
+                    + Add to cart
+                </button>
+            </div>
+            }
+        </div>
+
+
+    </div>
+</section>
