@@ -40,3 +40,9 @@ body{
 .secondary-color{
     color: var(--secondary-color);
 }
+.custom-focus:focus {
+  outline: none; 
+  border-color: var(--main-color); 
+  box-shadow: 0 0 0 0.3px var(--main-color); 
+}
+

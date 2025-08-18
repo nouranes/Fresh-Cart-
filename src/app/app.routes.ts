@@ -31,6 +31,7 @@ export const routes: Routes = [
     children: [
       { path: 'login', loadComponent: ()=>import ('./pages/login/login.component').then((c)=>c.LoginComponent), title: 'login !' },
       { path: 'register', loadComponent: ()=>import ('./pages/register/register.component').then((c)=>c.RegisterComponent), title: 'register !' },
+      { path: 'forget-pssword', loadComponent: ()=>import ('./pages/forget-pssword/forget-pssword.component').then((c)=>c.ForgetPsswordComponent), title: 'forget Password !' },
       { path: '**',loadComponent: ()=>import ('./pages/not-found/not-found.component').then((c)=>c.NotFoundComponent), title: 'NotFound !!!' },
     ],
   },

@@ -6,10 +6,12 @@ import { log } from 'console';
 import { ICategory } from '../../shared/icategory';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
+import { SearchPipe } from '../../shared/pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule,RouterLink ],
+  imports: [CarouselModule,RouterLink ,SearchPipe ,FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -18,6 +20,8 @@ export class HomeComponent implements OnInit {
   private readonly categoriesService = inject(CategoriesService);
   myProducts: Iproduct[] = [];
   myCategories: ICategory[] = [];
+
+  searchItem:string ='';
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
