@@ -48,7 +48,8 @@
         <div class="parent grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 bg-white">
             @for (prod of myProducts.slice(0, 20); track prod._id) {
             <div class="card border border-green-400/50 rounded-md overflow-hidden shadow relative p-1">
-                <div class="card-img">
+               <div [routerLink]="['/details' ,prod._id]">
+                 <div class="card-img">
                     <img [src]='prod.imageCover' class="w-full" alt="" />
                 </div>
                 <div class="card-body px-2 py-4">
@@ -63,6 +64,7 @@
                         <span class="text-gray-500">{{prod.ratingsAverage}}</span>
                     </div>
                 </div>
+               </div>
                 <button class="py-1 px-2 MB-1 text-white rounded-lg w-[95%] block mx-auto bg-main-color cursor-pointer">
                     + Add to cart
                 </button>

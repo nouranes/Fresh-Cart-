@@ -41,6 +41,11 @@ export class LoginComponent {
         this.isLoading = false;
         console.log(res);
         this.successMsg = res.message ;
+        // save token in local storage
+        localStorage.setItem('myToken',res.token)
+
+        // decode item
+        this.authService.getUserData()
         // navigate login
         setTimeout(()=>{
           this.router.navigate(['/home'])

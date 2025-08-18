@@ -5,10 +5,11 @@ import { CategoriesService } from '../../core/services/categories/categories.ser
 import { log } from 'console';
 import { ICategory } from '../../shared/icategory';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule],
+  imports: [CarouselModule,RouterLink ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
