@@ -1,1 +1,181 @@
-<p>forget-pssword works!</p>
+<section class="max-w-8/12 bg-main-light m-8 shadow-lg rounded-lg mx-auto px-8 py-2 flex justify-content-center align-items-center">
+
+  <!-- Forgot Password Form -->
+  @if(step==1){
+  <form [formGroup]="forgotPassForm" class="my-4 w-10/12 mx-auto p-4" (ngSubmit)="forgotPass()">
+    <div class="mb-6">
+      @let emailControl=forgotPassForm.get("email");
+      <label for="uEmail" class="block mb-2 text-lg font-light main-color">Email</label>
+      <input
+        type="email"
+        id="uEmail"
+        formControlName="email"
+        (blur)="emailControl?.markAsTouched()"
+        class="bg-white border border-gray-300 text-gray-900 rounded-lg w-full p-2
+          focus:outline-none focus:ring-0  
+         focus:shadow-[0_0_2px_var(--main-color)]"
+      />
+      @if(emailControl?.invalid && emailControl?.touched){
+      <div class="flex text-sm font-medium text-red-500 rounded-lg dark:bg-gray-800 dark:text-red-400" role="alert">
+        <div>
+          <ul class="mt-1.5 list-inside list-none">
+            @if(emailControl?.errors?.['required']){
+            <li>Please enter your email</li>
+            }
+            @if(emailControl?.errors?.['email']){
+            <li>Enter a valid email</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <button 
+      type="submit" 
+      [disabled]="forgotPassForm.invalid || isLoading"
+      class="block ms-auto text-white focus:ring-4 focus:outline-none font-medium rounded-xl text-sm px-5 py-2.5 justify-content-end"
+      [ngClass]="{
+        'bg-green-200 cursor-default': forgotPassForm.invalid,
+        'bg-main-color hover:bg-green-500': !forgotPassForm.invalid && !isLoading,
+        'bg-main-color opacity-75': isLoading
+      }">
+      Next
+
+      @if (isLoading) {
+      <i class="fa-solid fa-spinner fa-spin ml-2"></i>
+      }
+    </button>
+    
+    @if(errMsg){
+    <p class="p-3 text-sm font-medium text-center mx-auto mb-4 text-red-500 rounded-lg" role="alert">
+      {{errMsg}}
+    </p>
+    }
+  </form>
+  }
+  
+  <!-- Verify Code Form -->
+  @if(step==2){
+  <form [formGroup]="verifyCodeForm" class="my-4 w-10/12 mx-auto p-4" (ngSubmit)="verifyCode()">
+    <div class="mb-6">
+      @let codeControl=verifyCodeForm.get("resetCode");
+      <label for="resetCode" class="block mb-2 text-lg font-light main-color">Verification Code</label>
+      <input
+        type="text"
+        id="resetCode"
+        formControlName="resetCode"
+        (blur)="codeControl?.markAsTouched()"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2
+        focus:outline-none focus:ring-0  
+         focus:shadow-[0_0_2px_var(--main-color)]"
+      />
+      @if(codeControl?.invalid && codeControl?.touched){
+      <div class="flex text-sm font-medium text-red-500 rounded-lg dark:bg-gray-800 dark:text-red-400" role="alert">
+        <div>
+          <ul class="mt-1.5 list-inside list-none">
+            @if(codeControl?.errors?.['required']){
+            <li>please enter Verification Code</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <button 
+      type="submit"
+      [disabled]="verifyCodeForm.invalid || isLoading"
+      class="block ms-auto text-white focus:ring-4 focus:outline-none font-medium rounded-xl text-sm px-5 py-2.5 justify-content-end"
+      [ngClass]="{
+        'bg-green-200 cursor-default': verifyCodeForm.invalid,
+        'bg-main-color hover:bg-green-500': !verifyCodeForm.invalid && !isLoading,
+        'bg-main-color opacity-75': isLoading
+      }">
+      Verify
+      @if (isLoading) {
+      <i class="fa-solid fa-spinner fa-spin ml-2"></i>
+      }
+    </button>
+    
+    @if(errMsg){
+    <p class="p-3 text-sm font-medium text-center mx-auto mb-4 text-red-500 rounded-lg" role="alert">
+      {{errMsg}}
+    </p>
+    }
+  </form>
+  }
+
+  <!-- Reset Password Form -->
+  @if(step==3){
+  <form [formGroup]="resetPassForm" class="my-4 w-10/12 mx-auto p-4" (ngSubmit)="resetPass()">
+    <div class="mb-6">
+      @let resetEmailControl=resetPassForm.get("email");
+      <label for="resetEmail" class="block mb-2 text-lg font-light main-color">Email</label>
+      <input
+        readonly
+        type="email"
+        id="resetEmail"
+        formControlName="email"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2
+        focus:outline-none focus:ring-0  
+         focus:shadow-[0_0_2px_var(--main-color)]"
+      />
+    </div>
+
+    <div class="mb-6">
+      @let passwordControl=resetPassForm.get("newPassword");
+      <label for="newPassword" class="block mb-2 text-lg font-light main-color">New Password</label>
+      <input
+        type="password"
+        id="newPassword"
+        formControlName="newPassword"
+        (blur)="passwordControl?.markAsTouched()"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2
+        focus:outline-none focus:ring-0  
+         focus:shadow-[0_0_2px_var(--main-color)]"
+      />
+      @if(passwordControl?.invalid && passwordControl?.touched){
+      <div class="flex text-sm font-medium text-red-500 rounded-lg dark:bg-gray-800 dark:text-red-400" role="alert">
+        <div>
+          <ul class="mt-1.5 list-inside list-none">
+            @if(passwordControl?.errors?.['required']){
+            <li>please enter a new Password</li>
+            }
+            @if(passwordControl?.errors?.['pattern']){
+            <li>Your password must start with a capital letter and be at least 7 characters.</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <button 
+      type="submit"
+      [disabled]="resetPassForm.invalid || isLoading"
+      class="block ms-auto text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 justify-content-end"
+      [ngClass]="{
+        'bg-green-200 cursor-default': resetPassForm.invalid,
+        'bg-main-color ': !resetPassForm.invalid && !isLoading,
+        'bg-main-color opacity-75': isLoading
+      }">
+     Reset Password
+      @if (isLoading) {
+      <i class="fa-solid fa-spinner fa-spin ml-2"></i>
+      }
+    </button>
+    
+    @if(errMsg){
+    <p class="p-3 text-sm font-medium text-center mx-auto mb-4 text-red-500 rounded-lg" role="alert">
+      {{errMsg}}
+    </p>
+    }
+    @if (successMsg) {
+    <p class="p-3 text-lg font-medium text-center mx-auto mb-4 main-color rounded-lg" role="alert">
+      {{ successMsg }}
+    </p>
+    }
+  </form>
+  }
+</section>
