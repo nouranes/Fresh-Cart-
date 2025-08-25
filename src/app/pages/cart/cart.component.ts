@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from '../../core/services/cart/cart.service';
 import { Icart } from '../../shared/interfaces/icart';
 import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-cart',
   imports: [RouterLink],

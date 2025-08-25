@@ -34,9 +34,10 @@ body{
 .sec-color{
     color: var(--sec-color);
 }
-.bg-sec-color{
-    background-color: var(--sec-color);
+.btn-hover-custom:hover {
+  background-color: #0aad0ac2 !important;
 }
+
 .hover-sec-color:hover {
   background-color: var(--sec-color) !important;
 }
