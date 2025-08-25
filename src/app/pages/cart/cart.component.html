@@ -1,1 +1,61 @@
-<p>cart works!</p>
+<section class="w-[75%] mx-auto">
+
+  @if(cartDetails.totalCartPrice){
+  <h1 class="text-center text-green-600 text-4xl">Shop Cart</h1>
+  <button (click)="deleteCart()" class="cursor-pointer text-xs bg-red-900 text-white rounded px-6 block ms-auto py-1">
+    Clear Cart
+  </button>
+  <h3 class="text-green-600 my-1">
+    Total Cart Price : {{ cartDetails.totalCartPrice }} EGP
+  </h3>
+
+  <!-- cart items -->
+  @for (prod of cartDetails.products; track prod.product.id) {
+  <div class="grid md:grid-cols-[10%_minmax(0,1fr)] gap-4 border-b py-3">
+
+    <!-- img -->
+    <div>
+      <img [src]="prod.product.imageCover" class="w-full h-[100px] object-contain" [alt]="prod.product.title">
+    </div>
+
+    <!-- info -->
+    <div class="flex justify-between items-center w-full">
+
+      <!-- left side -->
+      <div>
+        <h3 class="font-semibold text-lg">Title: {{ prod.product.title }}</h3>
+        <h4 class="text-green-500">Price: {{ prod.price }} EGP</h4>
+        <button class="flex items-center gap-1 text-red-600 hover:text-red-800 cursor-pointer"
+          (click)="deleteItem(prod.product._id)">
+          <i class="fas fa-trash-can"></i> Remove
+        </button>
+      </div>
+
+      <!-- right side (count controls) -->
+      <div class="flex items-center gap-3">
+        <button class="text-3xl text-green-600 hover:text-green-800 cursor-pointer"
+          (click)="updateQuantity(prod.count +1,prod.product._id)">
+          <i class="fa-regular fa-square-plus"></i>
+        </button>
+
+        <span class="font-medium">{{ prod.count }}</span>
+
+        <button class="text-3xl text-green-600 hover:text-green-800 cursor-pointer"
+          (click)="updateQuantity(prod.count -1,prod.product._id)">
+          <i class="fa-regular fa-square-minus"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+  }
+
+  <button [routerLink]="['/checkout', cartDetails._id]" class="py-2 px-4 my-3 text-white rounded-lg block me-auto bg-green-700 cursor-pointer hover:bg-green-800">
+    Checkout
+  </button>
+  }
+  @else {
+  <img src="/images/cartempty.png" class="w-100 mx-auto text-center h-auto object-contain" alt="cart empty">
+  <p class="text-2xl text-center pb-8 ">Your <span class="main-color">Cart</span> is Empty</p>
+  }
+</section>

@@ -1,1 +1,29 @@
-<p>checkout works!</p>
+<section class="  mx-auto my-8">
+  <h1 class="text-center  text-3xl font-light py-4">Checkout <span class="main-color">Now</span> </h1>
+  <form (ngSubmit)="submitForm()" [formGroup]="paymentForm" class="bg-main-light py-8 w-7/12 mx-auto px-10 shadow-lg rounded-lg">
+    
+    <div class="mb-6">
+      <label for="uDetails" class="block mb-2 text-lg font-light text-gray-700">Details</label>
+      <input formControlName="details" type="text" id="uDetails"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5" />
+    </div>
+
+    <div class="mb-6">
+      <label for="uPhone" class="block mb-2 text-lg font-light text-gray-700">Phone</label>
+      <input formControlName="phone" type="tel" id="uPhone"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5" />
+    </div>
+
+    <div class="mb-6">
+      <label for="uCity" class="block mb-2 text-lg font-light text-gray-700">City</label>
+      <input  formControlName="city" type="tel" id="uCity"
+        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5" />
+    </div>
+
+    <button type="submit" 
+      class="bg-main-color  text-white py-2 px-4 rounded-lg cursor-pointer">
+      Check Out
+    </button>
+  </form>
+</section>
+

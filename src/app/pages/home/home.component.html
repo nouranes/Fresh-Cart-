@@ -68,9 +68,11 @@
             </div>
           </div>
         </div>
-        <button class="py-1 px-2 MB-1 text-white rounded-lg w-[95%] block mx-auto bg-main-color cursor-pointer">
-          + Add to cart
-        </button>
+     <button 
+  (click)="addProductToCart(prod._id)" 
+  class="py-1 px-2 mb-1 text-white rounded-lg w-[95%] block mx-auto bg-main-color cursor-pointer hover:bg-green-500! transition-colors duration-300">
+  + Add to cart
+</button>
       </div>
       }
     </div>

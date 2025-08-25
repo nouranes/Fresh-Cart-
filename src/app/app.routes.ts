@@ -20,6 +20,8 @@ export const routes: Routes = [
       { path: 'products', loadComponent: ()=>import ("./pages/products/products.component").then((c)=>c.ProductsComponent), title: 'products !' },
       { path: 'categories', loadComponent: ()=>import ('./pages/categories/categories.component').then((c)=>c.CategoriesComponent), title: 'categories !' },
       { path: 'brands',loadComponent: ()=>import ('./pages/brands/brands.component').then((c)=>c.BrandsComponent), title: 'brands !' },
+      { path: 'allorders',loadComponent: ()=>import ('./pages/allorders/allorders.component').then((c)=>c.AllordersComponent), title: 'brands !' },
+      { path: 'checkout/:id',loadComponent: ()=>import ('./pages/checkout/checkout.component').then((c)=>c.CheckoutComponent), title: 'brands !' },
       { path: 'details/:id',loadComponent: ()=>import ('./pages/details/details.component').then((c)=>c.DetailsComponent), title: 'details !' ,data: { renderMode: 'server' }}
     ],
   },

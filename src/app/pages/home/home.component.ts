@@ -8,6 +8,8 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../../core/services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,11 @@ import { FormsModule } from '@angular/forms';
 export class HomeComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
   private readonly categoriesService = inject(CategoriesService);
+  private readonly cartService=inject(CartService)
+   private readonly toastr=inject(ToastrService)
+  
+    
+  
   myProducts: Iproduct[] = [];
   myCategories: ICategory[] = [];
 
@@ -99,5 +106,26 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.callProduct();
     this.callCategory();
+  }
+   showSuccess(msg:string) {
+      this.toastr.success(msg, '',{
+        progressBar:true,
+        progressAnimation:'increasing',
+        timeOut:1500
+      }
+
+      );
+    }
+  addProductToCart(id:string):void{
+    this.cartService.addProductToCart(id).subscribe({
+      next:(res)=>{
+        console.log(res)
+        this.showSuccess("Product added Successfully")
+      },
+      error:(err)=>{
+        console.log(err)
+      }
+    })
+
   }
 }
