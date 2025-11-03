@@ -10,10 +10,13 @@ import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../core/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule,RouterLink ,SearchPipe ,FormsModule],
+  imports: [CarouselModule,RouterLink ,SearchPipe ,FormsModule,NgxSpinnerModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -22,6 +25,7 @@ export class HomeComponent implements OnInit {
   private readonly categoriesService = inject(CategoriesService);
   private readonly cartService=inject(CartService)
    private readonly toastr=inject(ToastrService)
+   private readonly ngxSpinner=inject(NgxSpinnerService)
   
     
   
@@ -78,6 +82,11 @@ export class HomeComponent implements OnInit {
 
     items: 1,
     nav: true,
+    responsive: {
+    0: { items: 1 },
+    768: { items: 1 },
+    1024: { items: 1 }
+  }
   };
 
   callProduct() {
@@ -117,10 +126,14 @@ export class HomeComponent implements OnInit {
       );
     }
   addProductToCart(id:string):void{
+    
     this.cartService.addProductToCart(id).subscribe({
       next:(res)=>{
         console.log(res)
         this.showSuccess("Product added Successfully")
+        const cartProducts = res.data.products || [];
+          this.cartService.updateCartCount(cartProducts.length);;
+        
       },
       error:(err)=>{
         console.log(err)

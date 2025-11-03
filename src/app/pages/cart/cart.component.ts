@@ -17,6 +17,8 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res)
         this.cartDetails=res.data
+        this.cartService.updateCartCount(this.cartDetails.products.length);
+
       },
       error:(err)=>{
         console.log(err)
@@ -29,6 +31,7 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         console.log(res)
         this.cartDetails=res.data
+        this.cartService.updateCartCount(this.cartDetails.products.length);
       },
       error:(err)=>{
         console.log(err)
@@ -42,6 +45,7 @@ updateQuantity(quantity:any ,id:string){
     next:(res)=>{
         console.log(res)
         this.cartDetails=res.data
+        this.cartService.updateCartCount(this.cartDetails.products.length);
       },
       error:(err)=>{
         console.log(err)
@@ -56,6 +60,7 @@ deleteCart(): void {
     next: (res) => {
       console.log(res);
       this.cartDetails ={} as Icart
+      this.cartService.updateCartCount(0);
     },
     error: (err) => {
       console.log(err);

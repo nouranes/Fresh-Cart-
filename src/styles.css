@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
@@ -17,10 +18,14 @@ body{
 :root {
   font-family: "Encode Sans Expanded", sans-serif;
   --main-color: #0aad0a;
-  --sec-color: #0aad0ac2;
+  --sec-color: #0aad0ab6;
   --secondary-color: rgba(33, 37, 41, .75);
   --light-color: #f8f9fa;
  
+}
+@theme inline{
+  --color-main:var(--main-color);
+  --color-sec:var(--sec-color)
 }
 
 .bg-main-light {

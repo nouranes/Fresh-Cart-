@@ -1,25 +1,30 @@
-<section class="py-5 pt-10">
-  <div class="parent grid md:grid-cols-[70%_minmax(0,1fr)] container w-10/12 mx-auto">
-    <div>
-      <owl-carousel-o [options]="mainSliderOptions">
+<section class="py-5 pt-10 ">
+  <div class="parent grid grid-cols-1 md:grid-cols-[70%_minmax(0,1fr)] container w-11/12 mx-auto ">
+    
+    
+    <div class="w-full">
+      <owl-carousel-o [options]="mainSliderOptions" class="w-full">
         <ng-template carouselSlide>
-          <img src="/images/slide1.jpg" class="w-full h-[500px] object-cover" alt="">
+          <img src="/images/slide1.jpg" class="w-full object-contain md:object-cover md:h-[500px]" alt="">
         </ng-template>
         <ng-template carouselSlide>
-          <img src="/images/slide2.jpg" class="w-full h-[500px] object-cover" alt="">
+          <img src="/images/slide2.jpg" class="w-full object-contain md:object-cover md:h-[500px]" alt="">
         </ng-template>
         <ng-template carouselSlide>
-          <img src="/images/slide3.jpg" class="w-full h-[500px] object-cover" alt="">
+          <img src="/images/slide3.jpg" class="w-full object-contain md:object-cover md:h-[500px]" alt="">
         </ng-template>
       </owl-carousel-o>
     </div>
 
-    <div>
+    <!-- الصور الجانبية -->
+    <div class="flex flex-col  w-full">
       <img src="/images/fixedImg1.jpg" class="w-full h-[250px] object-cover" alt="">
       <img src="/images/fixedImg2.jpg" class="w-full h-[250px] object-cover" alt="">
     </div>
+
   </div>
 </section>
+
 
 <section>
   <div class="secTitle mb-3 py-5">
@@ -49,7 +54,7 @@
 
 
     <div class="parent grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 bg-white">
-      @for (prod of myProducts.slice(0, 20)|search:searchItem; track prod._id) {
+      @for (prod of myProducts|search:searchItem; track prod._id) {
       <div class="card border border-green-400/50 rounded-md overflow-hidden shadow relative p-1">
         <div [routerLink]="['/details' ,prod._id]">
           <div class="card-img">
@@ -70,7 +75,7 @@
         </div>
      <button 
   (click)="addProductToCart(prod._id)"  
-  class="py-1 px-2 mb-1 text-white rounded-lg w-[95%] block mx-auto bg-main-color cursor-pointer hover:bg-green-500! transition-colors duration-300">
+  class="py-1 px-2 mb-1 text-white rounded-lg w-[95%] block mx-auto bg-main cursor-pointer hover:bg-sec transition-colors duration-300">
   + Add to cart
 </button>
       </div>
